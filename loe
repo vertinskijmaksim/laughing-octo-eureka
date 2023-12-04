@@ -1,0 +1,22 @@
+        guard let input else { return }
+        sleep(2)
+        guard !isCancelled else {
+            output = input + " cancel"
+            return
+        }
+        output = input + " ready"
+    }
+}
+
+final class SimpleAsyncOperation: AsyncOperation {
+    var input: String?
+    var output: String?
+    
+    override func main() {
+        guard let input else { return }
+        sleep(2)
+        guard !isCancelled else {
+            output = input + " cancel"
+            state = .finished
+            return
+        }
